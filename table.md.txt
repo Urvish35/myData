@@ -6,7 +6,55 @@ Kpi_end_date : date or string
 Kpi_status : string or bool
 Kpi_Deascription : string
 Kpi_Year : date or string
- 
+
+
+Kpi summary table
+
+KpiSummaryId: int (PK)
+KpiStatus : string
+KpiYear : string
+
+
+
+EmployeeKpi Table
+
+KpiId: int(PK)
+ManagerId: int (FK)
+EmpId: int (FK)
+KpiName: string
+KpiStartDate: string
+KpiEndDate: string
+KpiDescription: string
+
+
+AppraisalHader Table
+
+AppraisalHeaderId: int(PK)
+AppraisalHeaderName :  string
+
+
+
+AppraisalContent Table
+
+AppraisalContentId: int(PK)
+AppraisalContentName: string
+AppraisalContentWeight: float
+
+
+AppraisalRanking Table
+
+AppraisalRankingId: int(PK)
+EmpId: int(FK)
+ManagerId : int(FK)
+AppraisalEmployeeRank : int
+AppraisalEmployeeComment : string
+AppraisalManagerRank: int
+AppraisalManagerComment : string
+
+
+
+
+
 
   KPI_Id   Emp_Id   Kpi_Name                    Kpi_start_date   Kpi_end_date   Kpi_status   Kpi_Description                   Kpi_Year  
  ------- ------- ----------------              ---------------- -------------- ------------- ------------------               ---------  
