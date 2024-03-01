@@ -11,8 +11,20 @@ Kpi_Year : date or string
 Kpi summary table
 
 KpiSummaryId: int (PK)
+KpiId: int(FK)
 KpiStatus : string
 KpiYear : string
+
+| KpiSummaryId | KpiId | KpiStatus   | KpiYear   |
+|--------------|-------|-------------|-----------|
+| 1            | 101   | In Progress | 2024      |
+| 2            | 102   | Completed   | 2023      |
+| 3            | 103   | On Hold     | 2025      |
+| 4            | 104   | Not Started | 2022      |
+| 5            | 105   | In Progress | 2024      |
+
+
+
 
 
 
@@ -26,30 +38,102 @@ KpiStartDate: string
 KpiEndDate: string
 KpiDescription: string
 
+| KpiId | ManagerId | EmpId | KpiName          | KpiStartDate | KpiEndDate  | KpiDescription                            |
+|-------|-----------|-------|------------------|--------------|-------------|-------------------------------------------|
+| 1     | 201       | 301   | Project A        | 2024-01-15   | 2024-06-30  | Improve project delivery efficiency      |
+| 2     | 202       | 302   | Sales Targets    | 2023-07-01   | 2023-12-31  | Achieve 20% increase in quarterly sales  |
+| 3     | 203       | 303   | Training Program | 2025-03-01   | 2025-09-30  | Conduct workshops for skill development  |
+| 4     | 204       | 304   | Quality Assurance | 2022-11-10  | 2023-05-15  | Implement quality control measures       |
+| 5     | 205       | 305   | Innovation Project| 2024-04-20   | 2024-11-30  | Launch new product feature                |
+
+
+
 
 AppraisalHader Table
 
 AppraisalHeaderId: int(PK)
 AppraisalHeaderName :  string
+AppraisalHeaderWeightage: float
+
+| AppraisalHeaderId | AppraisalHeaderName | AppraisalHeaderWeightage |
+|-------------------|----------------------|---------------------------|
+| 1                 | Leadership Skills    | 15.5                      |
+| 2                 | Goal Achievement     | 20.0                      |
+| 3                 | Communication Skills | 10.2                      |
+| 4                 | Team Collaboration    | 12.8                      |
+| 5                 | Innovation            | 18.5                      |
+
 
 
 
 AppraisalContent Table
 
 AppraisalContentId: int(PK)
+AppraisalHeaderId: int(FK)
 AppraisalContentName: string
+AppraisalContentDescription: string
 AppraisalContentWeight: float
+
+| AppraisalContentId | AppraisalHeaderId | AppraisalContentName    | AppraisalContentDescription                   | AppraisalContentWeight |
+|---------------------|---------------------|-------------------------|------------------------------------------------|------------------------|
+| 1                   | 1                   | Vision and Strategy     | Demonstrates a clear vision for the team        | 10.0                   |
+| 2                   | 1                   | Decision-making         | Makes effective decisions under pressure       | 8.5                    |
+| 3                   | 2                   | Goal Setting            | Sets challenging and achievable goals           | 15.0                   |
+| 4                   | 2                   | Goal Progress           | Shows consistent progress toward goals         | 12.0                   |
+| 5                   | 3                   | Communication Skills    | Communicates clearly and effectively            | 9.8                    |
+| 6                   | 3                   | Active Listening        | Listens attentively and understands viewpoints | 10.2                   |
 
 
 AppraisalRanking Table
 
 AppraisalRankingId: int(PK)
+AppraisalContentId: int(FK)
 EmpId: int(FK)
 ManagerId : int(FK)
-AppraisalEmployeeRank : int
-AppraisalEmployeeComment : string
-AppraisalManagerRank: int
+AppraisalRank : int
+AppraisalComment : string
+AppraisalRankingCalculate: float
+AppraisalRankingCalculateTotal: float
+AppraisalRankUserRole: string
+
+
+
+//optional
+AppraisalManagerRankId: int
 AppraisalManagerComment : string
+
+| AppraisalRankingId  | AppraisalContentId | EmpId | ManagerId | AppraisalRank | AppraisalComment                         | AppraisalRankingCalculate | AppraisalRankUserRole |
+|---------------------|---------------------|-------|------------|----------------|------------------------------------------|--------------------------|------------------------|
+| 1                   | 1                   | 101   | 201        | 4              | Demonstrates strong leadership skills    | 38.5                     | Manager                |
+| 2                   | 2                   | 102   | 202        | 3              | Making progress towards set goals        | 26.8                     | Manager                |
+| 3                   | 1                   | 103   | 203        | 5              | Excellent communication skills          | 33.2                     | Employee                |
+| 4                   | 4                   | 104   | 204        | 2              | Needs improvement in team collaboration | 15.7                     | Manager                |
+| 5                   | 1                   | 105   | 205        | 1              | Exceptional in bringing innovative ideas | 45.0                     | Employee                |
+
+
+
+
+
+
+
+AppraisalOverallRating Table
+
+AppraisalOverallRatingId: int(PK)
+AppraisalRankingId :int()
+AppraisalOverallRank : float
+
+
+| AppraisalOverallRatingId | AppraisalRankingId | AppraisalOverallRank |
+|--------------------------|--------------------|-----------------------|
+| 1                        | 1                  | 36.5                  |
+| 2                        | 2                  | 29.0                  |
+| 3                        | 3                  | 34.2                  |
+| 4                        | 4                  | 17.5                  |
+| 5                        | 5                  | 43.5                  |
+
+
+
+
 
 
 
